@@ -14,48 +14,27 @@
     </section>
 
     <section class="brokerage-form">
-      <form method="post" @submit.prevent="handleSubmit">
-        <input type="hidden" name="form-name" value="brokerage-form" required />
-
-        <div class="form-row no-gutters">
-          <div class="form-group col-md-6">
-
-            <input type="text" class="form-control" id="firstname" name="firstname" placeholder="&nbsp;"
-              @input="ev => form.firstname = ev.target.value" required>
-            <label for="firstName">First name</label>
-          </div>
-          <div class="form-group col-md-6">
-
-            <input type="text" class="form-control" id="lastname" name="lastname" placeholder="&nbsp;"
-              @input="ev => form.lastname = ev.target.value" required>
-            <label for="lastName">Last name</label>
-          </div>
-        </div>
-        <div class="form-row no-gutters">
-          <div class="form-group col-md-12">
-
-            <input type="email" class="form-control" id="input-email" name="email" placeholder="&nbsp;"
-              @input="ev => form.email = ev.target.value" required>
-            <label for="inputEmail">Email</label>
-          </div>
-        </div>
-        <div class="form-row no-gutters">
-          <div class="form-group col-md-12">
-
-            <input type="text" class="form-control" id="subject" name="subject" placeholder="&nbsp;"
-              @input="ev => form.subject = ev.target.value" required>
-            <label for="subject">Subject</label>
-          </div>
-        </div>
-        <div class="form-row no-gutters">
-          <div class="form-group col-md-12">
-            <textarea class="form-control" id="message" name="message" placeholder="&nbsp;"
-              @input="ev => form.message = ev.target.value" required></textarea>
-            <label for="message">Your message to us</label>
-          </div>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit message</button>
-      </form>
+    <form name="contact" method="POST" data-netlify="true">
+      <input type="hidden" name="form-name" value="contact">
+  <p>
+    <label>Your Name: <input type="text" name="name" /></label>
+  </p>
+  <p>
+    <label>Your Email: <input type="email" name="email" /></label>
+  </p>
+  <p>
+    <label>Your Role: <select name="role[]" multiple>
+      <option value="leader">Leader</option>
+      <option value="follower">Follower</option>
+    </select></label>
+  </p>
+  <p>
+    <label>Message: <textarea name="message"></textarea></label>
+  </p>
+  <p>
+    <button type="submit">Send</button>
+  </p>
+</form>
     </section>
 
     <!-- <section class="hero">
@@ -262,7 +241,7 @@ export default {
           }),
           axiosConfig
         ).then(() => this.$router.push("/#form-submitted"))
-        .catch((error) => alert(error));;
+          .catch((error) => alert(error));;
       }
 
 
