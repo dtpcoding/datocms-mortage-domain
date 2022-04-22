@@ -169,6 +169,7 @@ import { request, gql, imageFields, seoMetaTagsFields } from '~/lib/datocms'
 import { toHead } from 'vue-datocms'
 import format from 'date-fns/format'
 import parseISO from 'date-fns/parseISO'
+import axios from "axios";
 
 export default {
   async asyncData({ params }) {
@@ -243,7 +244,7 @@ export default {
     formatDate(date) {
       return format(parseISO(date), 'PPP')
     },
-    encode(data) {
+    encode (data) {
       return Object.keys(data)
         .map(
           key => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
@@ -251,17 +252,31 @@ export default {
         .join("&");
     },
      handleSubmit(e) {
-      fetch("/", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: this.encode({
-          "form-name": "brokerage-form",
-          ...this.form
-        })
-      })
-          .then(() => this.$router.push("/#form-submitted"))
-          .catch((error) => alert(error));
-    }
+      const axiosConfig = {
+        header: { "Content-Type": "application/x-www-form-urlencoded" }
+      };
+
+      axios.post("/", this.encode({
+            "form-name": "brokerage-form",
+            ...this.form
+          }),
+          axiosConfig
+        ).then(() => this.$router.push("/#form-submitted"))
+        .catch((error) => alert(error));;
+      }
+
+
+    //   fetch("/", {
+    //     method: "POST",
+    //     headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    //     body: this.encode({
+    //       "form-name": "brokerage-form",
+    //       ...this.form
+    //     })
+    //   })
+    //       .then(() => this.$router.push("/#form-submitted"))
+    //       .catch((error) => alert(error));
+    // }
   },
   head() {
     if (!this.ready) {
