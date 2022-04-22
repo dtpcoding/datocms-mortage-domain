@@ -1,0 +1,4 @@
+.button {
+    @apply py-[18px] px-[50px] text-white rounded-[45px] bg-secondary text-[18px] font-[500] hover:bg-opacity-90 ease-linear transition duration-100;
+    box-shadow: 2px 2px 20px 0 rgb(25 25 25 / 15%);
+}

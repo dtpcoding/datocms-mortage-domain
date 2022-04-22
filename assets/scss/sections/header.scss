@@ -1,0 +1,7 @@
+.navbar-menu {
+    @apply hidden md:block;
+}
+
+.navbar-link {
+    @apply md:ml-[30px] hover:text-accent text-[18px];
+}

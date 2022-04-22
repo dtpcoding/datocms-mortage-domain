@@ -1,6 +1,64 @@
 <template>
   <div>
-    <section class="hero">
+    <section class="banner py-[150px]">
+      <div class="container">
+        <div class="flex items-center justify-center">
+          <div class="text-center max-w-[500px]">
+            <h2 v-if="homepage.banner[0].title" class="h1" v-html="homepage.banner[0].title"></h2>
+            <h2 v-if="homepage.banner[0].titleSecondLine" class="h1 mb-6 text-secondary" v-html="homepage.banner[0].titleSecondLine"></h2>
+            <p v-if="homepage.banner[0].tagline" class="mb-7 leading-[1.4] text-[20px] font-light" v-html="homepage.banner[0].tagline"></p>
+            <button v-if="homepage.banner[0].buttonLabel" class="button button--primary" v-html="homepage.banner[0].buttonLabel"></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="brokerage-form">
+      <form method="post" @submit.prevent="handleSubmit">
+        <input type="hidden" name="form-name" value="contact-us-form" required />
+
+        <div class="form-row no-gutters">
+          <div class="form-group col-md-6">
+
+            <input type="text" class="form-control" id="firstname" name="firstname" placeholder="&nbsp;"
+              @input="ev => form.firstname = ev.target.value" required>
+            <label for="firstName">First name</label>
+          </div>
+          <div class="form-group col-md-6">
+
+            <input type="text" class="form-control" id="lastname" name="lastname" placeholder="&nbsp;"
+              @input="ev => form.lastname = ev.target.value" required>
+            <label for="lastName">Last name</label>
+          </div>
+        </div>
+        <div class="form-row no-gutters">
+          <div class="form-group col-md-12">
+
+            <input type="email" class="form-control" id="input-email" name="email" placeholder="&nbsp;"
+              @input="ev => form.email = ev.target.value" required>
+            <label for="inputEmail">Email</label>
+          </div>
+        </div>
+        <div class="form-row no-gutters">
+          <div class="form-group col-md-12">
+
+            <input type="text" class="form-control" id="subject" name="subject" placeholder="&nbsp;"
+              @input="ev => form.subject = ev.target.value" required>
+            <label for="subject">Subject</label>
+          </div>
+        </div>
+        <div class="form-row no-gutters">
+          <div class="form-group col-md-12">
+            <textarea class="form-control" id="message" name="message" placeholder="&nbsp;"
+              @input="ev => form.message = ev.target.value" required></textarea>
+            <label for="message">Your message to us</label>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit message</button>
+      </form>
+    </section>
+
+    <!-- <section class="hero">
       <div class="hero-body">
         <div class="container">
           <div v-for="post in posts.slice(0, 2)" v-bind:key="post.slug">
@@ -34,10 +92,10 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- newsletter -->
-    <section class="section">
+    <!-- <section class="section">
       <div class="columns">
         <div class="column is-10 is-offset-1">
           <div class="container has-text-centered is-fluid">
@@ -65,11 +123,11 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- Articles -->
 
-    <section class="hero ">
+    <!-- <section class="hero ">
       <div class="hero-body">
         <div class="container">
           <div
@@ -102,7 +160,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
   </div>
 </template>
 
@@ -143,8 +201,26 @@ export default {
               }
             }
           }
-        }
 
+          homepage {
+            _seoMetaTags {
+              attributes
+              content
+              tag
+            }
+            banner {
+              image {
+                responsiveImage(imgixParams: { fit: fill, h: 300 }) {
+                  ...imageFields
+                }
+              }
+              tagline
+              title
+              titleSecondLine
+              buttonLabel
+            }
+          }
+        }
         ${imageFields}
         ${seoMetaTagsFields}
       `
@@ -152,9 +228,36 @@ export default {
 
     return { ready: !!data, ...data }
   },
+  data() {
+    return {
+      form: {
+        firstname: "",
+        lastname: "",
+        email: "",
+        subject: "",
+        message: ""
+      }
+    }
+  },
   methods: {
     formatDate(date) {
       return format(parseISO(date), 'PPP')
+    },
+     handleSubmit(e) {
+      fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: this.encode({
+          "form-name": "brokerage-form",
+          ...this.form
+        })
+      })
+        .then(() => {
+          console.log('form successfully submitted');
+        })
+        .catch(() => {
+          console.log('form unsuccessfully submitted');
+        });
     }
   },
   head() {
@@ -162,7 +265,10 @@ export default {
       return
     }
 
-    return toHead(this.site.favicon)
+    return toHead(this.homepage._seoMetaTags, this.site.favicon)
+  },
+  mounted() {
+    console.log(this.homepage.banner[0]);
   }
 }
 </script>

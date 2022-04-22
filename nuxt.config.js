@@ -18,7 +18,9 @@ export default {
   /*
    ** Global CSS
    */
-  css: [],
+  css: [
+    '@/assets/scss/main.scss',
+  ],
   /*
    ** Plugins to load before mounting the App
    */
@@ -26,13 +28,13 @@ export default {
   /*
    ** Nuxt.js dev-modules
    */
-  buildModules: [],
+  buildModules: [
+    '@nuxt/postcss8',
+  ],
   /*
    ** Nuxt.js modules
    */
   modules: [
-    // Doc: https://github.com/nuxt-community/modules/tree/master/packages/bulma
-    '@nuxtjs/bulma',
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     // Doc: https://github.com/nuxt-community/dotenv-module
@@ -48,11 +50,10 @@ export default {
    */
   build: {
     postcss: {
-      preset: {
-        features: {
-          customProperties: false
-        }
-      }
+      plugins: {
+        tailwindcss: {},
+        autoprefixer: {},
+      },
     },
     /*
      ** You can extend webpack config here

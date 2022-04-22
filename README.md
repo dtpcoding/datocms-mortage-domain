@@ -4,10 +4,12 @@
 
 [![Deploy with DatoCMS](https://dashboard.datocms.com/deploy/button.svg)](https://dashboard.datocms.com/deploy?repo=datocms/nuxtjs-demo)
 
+Mortgage Domain's DatoCMS URL: https://mortage-domain.admin.datocms.com/editor
+
 Or set the API token manually:
 
 ```
-echo 'NUXT_ENV_DATOCMS_API_TOKEN=abc123' >> .env
+echo 'NUXT_ENV_DATOCMS_API_TOKEN=a849d305b4897ea4d5275ecdba744d' >> .env
 ```
 
 ## Build Setup
