@@ -14,7 +14,7 @@
     </section>
 
     <section class="brokerage-form">
-     <form name="contact" method="POST" data-netlify="true" action="/#successfully-submitted">
+     <form name="brokerage-form" method="POST" data-netlify="true" action="/#successfully-submitted">
       <p>
         <label>Your Name: <input type="text" name="name" /></label>
       </p>
