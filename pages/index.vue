@@ -16,19 +16,23 @@
     <section class="brokerage-form">
      <form name="brokerage-form" method="POST" data-netlify="true" action="/#successfully-submitted">
       <p>
-        <label>Your Name: <input type="text" name="name" /></label>
+        <label>Your Name: </label>
+        <input type="text" name="name" />
       </p>
       <p>
-        <label>Your Email: <input type="email" name="email" /></label>
+        <label>Your Email:</label>
+        <input type="email" name="email" />
       </p>
       <p>
-        <label>Your Role: <select name="role[]" multiple>
+        <label>Your Role:</label>
+        <select name="role[]" multiple>
           <option value="leader">Leader</option>
           <option value="follower">Follower</option>
-        </select></label>
+        </select>
       </p>
       <p>
-        <label>Message: <textarea name="message"></textarea></label>
+        <label>Message: </label>
+        <textarea name="message"></textarea>
       </p>
       <p>
         <button type="submit">Send</button>
