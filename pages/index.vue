@@ -14,27 +14,7 @@
     </section>
 
     <section class="brokerage-form">
-      <form name="contact" method="POST" data-netlify="true">
-      <p>
-        <label>Your Name: <input type="text" name="name" /></label>
-      </p>
-      <p>
-        <label>Your Email: <input type="email" name="email" /></label>
-      </p>
-      <p>
-        <label>Your Role: <select name="role[]" multiple>
-          <option value="leader">Leader</option>
-          <option value="follower">Follower</option>
-        </select></label>
-      </p>
-      <p>
-        <label>Message: <textarea name="message"></textarea></label>
-      </p>
-      <p>
-        <button type="submit">Send</button>
-      </p>
-    </form>
-      <!-- <form method="post" @submit.prevent="handleSubmit">
+      <form method="post" @submit.prevent="handleSubmit">
         <input type="hidden" name="form-name" value="contact-us-form" required />
 
         <div class="form-row no-gutters">
@@ -75,7 +55,7 @@
           </div>
         </div>
         <button type="submit" class="btn btn-primary">Submit message</button>
-      </form> -->
+      </form>
     </section>
 
     <!-- <section class="hero">
