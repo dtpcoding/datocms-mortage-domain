@@ -259,7 +259,8 @@ export default {
           ...this.form
         })
       })
-        .then(() => {
+        .then((response) => {
+          console.log(response);
           console.log('form successfully submitted');
         })
         .catch(() => {
