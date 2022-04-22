@@ -15,7 +15,7 @@
 
     <section class="brokerage-form">
       <form method="post" @submit.prevent="handleSubmit">
-        <input type="hidden" name="brokerage-form" value="contact-us-form" required />
+        <input type="hidden" name="form-name" value="brokerage-form" required />
 
         <div class="form-row no-gutters">
           <div class="form-group col-md-6">
